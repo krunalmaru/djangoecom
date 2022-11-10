@@ -1,8 +1,9 @@
 from django.urls import path
-from accounts.views import login_page, register_page
+from accounts.views import login_page, register_page, acivate_email
 
 urlpatterns = [
     path('login/', login_page, name='login'),
-    path('register/', register_page, name='register')
+    path('register/', register_page, name='register'),
+    path('activate/<email_token>/', acivate_email, name='acivate_email')
     
 ]
