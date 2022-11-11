@@ -13,7 +13,10 @@ class Profile(BaseModel):
     email_token = models.CharField(max_length=100, null=True, blank=True)
     profile_image = models.ImageField(upload_to = 'profile')
 
+    def __str__(self) -> str:
+        return self.user
 
+        
 @receiver(post_save , sender = User)
 def send_email_token(sender, instance, created, **kwargs):
     try:
