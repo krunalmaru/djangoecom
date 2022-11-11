@@ -16,7 +16,19 @@ class Category(BaseModel):
     def __str__(self):
         return self.category
 
+class Colorvariant(BaseModel):
+    color_name = models.CharField(max_length=100)
+    price = models.IntegerField(default=0)
 
+    def __str__(self) -> str:
+        return self.color_name
+
+class Sizevariant(BaseModel):
+    size_name = models.CharField(max_length=100)
+    price = models.IntegerField(default=0)
+
+    def __str__(self) -> str:
+        return self.size_name
 
 class Product(BaseModel):
     product_name = models.CharField(max_length=100)
@@ -24,6 +36,9 @@ class Product(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     price = models.IntegerField() 
     product_description = models.TextField()
+    color_variant = models.ManyToManyField(Colorvariant)
+    size_variant = models.ManyToManyField(Sizevariant)
+
 
     def save(self, *args,**kwargs):
         self.slug = slugify(self.product_name)
@@ -31,6 +46,7 @@ class Product(BaseModel):
     
     def __str__(self) -> str:
         return self.product_name
+
 
 
 class ProductImage(BaseModel):
