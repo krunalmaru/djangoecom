@@ -36,8 +36,8 @@ class Product(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     price = models.IntegerField() 
     product_description = models.TextField()
-    color_variant = models.ManyToManyField(Colorvariant)
-    size_variant = models.ManyToManyField(Sizevariant)
+    color_variant = models.ManyToManyField(Colorvariant, blank=True)
+    size_variant = models.ManyToManyField(Sizevariant,blank=True)
 
 
     def save(self, *args,**kwargs):
