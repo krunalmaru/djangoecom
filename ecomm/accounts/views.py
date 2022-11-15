@@ -61,3 +61,6 @@ def acivate_email(request, email_token):
         return redirect('/')
     except Exception as e:
         return HttpResponse('Invalide Email Address')
+
+def cart(request):
+    return render(request, 'accounts/cart.html')
