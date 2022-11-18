@@ -16,7 +16,6 @@ class Profile(BaseModel):
     def __str__(self) -> str:
         return self.user
 
-        
 @receiver(post_save , sender = User)
 def send_email_token(sender, instance, created, **kwargs):
     try:
